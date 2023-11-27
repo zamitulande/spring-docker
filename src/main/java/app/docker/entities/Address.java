@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
         ),
         @AttributeOverride(
                 name = "secundaryStreet",
-                column = @Column(name = "customer_secundary_street")
+                column = @Column(name = "customer_secondary_street")
         )
 
 })
@@ -35,5 +35,5 @@ public class Address {
 
     private String mainStreet;
 
-    private String secundaryStreet;
+    private String secondaryStreet;
 }

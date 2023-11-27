@@ -36,4 +36,7 @@ public class Customer {
     @Column(unique = true)
     private String email;
 
+    @Embedded
+    private Address address;
+
 }
