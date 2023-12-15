@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import app.docker.entities.Address;
+import app.docker.entities.Customer;
 import app.docker.entities.Local;
 import app.docker.entities.Manager;
-import app.docker.entities.NewOrders;
+//import app.docker.entities.NewOrders;
 
 @SpringBootTest
 public class LocalRepositoryTest {
@@ -43,25 +45,25 @@ public class LocalRepositoryTest {
     public void saveLocalwithOrders(){
 
          Manager manager = Manager.builder()
-             .firstName("Logan")
-             .lastName("x-men")
+             .firstName("yugi")
+             .lastName("oh")
              .build();
 
-        NewOrders newOrders = NewOrders.builder()
-            .description("nevera")
-            .price(60.5)
-            .build();
+        // NewOrders newOrders = NewOrders.builder()
+        //     .description("cartas")
+        //     .price(10.5)
+        //     .build();
         
-        NewOrders newOrders2 = NewOrders.builder()
-            .description("lavadora")
-            .price(80.5)
-            .build();
+        // NewOrders newOrders2 = NewOrders.builder()
+        //     .description("dragon")
+        //     .price(250.5)
+        //     .build();
 
         Local local = Local.builder()
-            .name("eletrodomesticos")
+            .name("japon")
             .floor("second floor")
             .manager(manager)
-            .newOrders(List.of(newOrders, newOrders2))
+            //.newOrders(List.of(newOrders, newOrders2))
             .build();
 
         localRepository.save(local);
@@ -71,5 +73,43 @@ public class LocalRepositoryTest {
     public void findAllLocalswithOrders(){
         List<Local> locals = localRepository.findAll();
         System.out.println("localsList = "+locals);
+    }
+
+    @Test
+    public void saveLocalWithCustomer(){
+
+        Manager manager = Manager.builder()
+             .firstName("yugi")
+             .lastName("oh")
+             .build();
+
+        Address address = Address.builder()
+                        .mainStreet("carrera belen")
+                        .secondaryStreet("licorera calle 3")
+                        .city("Popayan")
+                        .build();
+
+        Customer customer = Customer.builder()
+                            .firstName("mario")
+                            .lastName("cimarro")
+                            .email("correod2@corre.com")
+                            .address(address)
+                            .build();
+
+        Customer customer2 = Customer.builder()
+                            .firstName("edie")
+                            .lastName("polasqui")
+                            .email("edide@corre.com")
+                            .address(address)
+                            .build();
+
+        Local local = Local.builder()
+                        .name("bell")
+                        .floor("second")
+                        .customersList(List.of(customer, customer2))
+                        .manager(manager)
+                        .build();
+
+            localRepository.save(local);
     }
 }

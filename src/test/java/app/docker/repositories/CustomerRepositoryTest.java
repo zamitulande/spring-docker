@@ -19,9 +19,9 @@ class CustomerRepositoryTest {
     @Test
     public void saveCustomer(){
         Customer customer = Customer.builder()
-                        .firstName("Natalia")
-                        .lastName("Gaviria")
-                        .email("nata@correo.com")
+                        .firstName("lina")
+                        .lastName("capote")
+                        .email("lina@correo.com")
                         .build();
 
          customerRepository.save(customer);
@@ -36,8 +36,9 @@ class CustomerRepositoryTest {
                         .build();
 
              Customer customer = Customer.builder()
-                        .firstName("Juan")
-                        .email("juan@correo.com")
+                        .firstName("lina")
+                        .lastName("capote")
+                        .email("lina@correo.com")
                         .address(address)
                         .build();
 

@@ -25,7 +25,7 @@ public class Customer {
             strategy = GenerationType.IDENTITY
     )
     @Id
-    private Integer costumer;
+    private Integer costumerId;
 
     private String firstName;
 

@@ -2,6 +2,7 @@ package app.docker.entities;
 
 import java.util.List;
 
+//import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,9 +10,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+//import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,22 +47,39 @@ public class Local {
 
     @OneToOne(
         cascade = CascadeType.PERSIST,
-        fetch = FetchType.EAGER,
-        optional = false
+        fetch = FetchType.EAGER
     )
     @JoinColumn(
         name = "manager_id",
         referencedColumnName = "managerId"
     )
+    @NotNull
     private Manager manager;
 
-    @OneToMany(
-        cascade = CascadeType.ALL,
-        fetch = FetchType.EAGER
+    @ManyToMany(
+        cascade = CascadeType.ALL
     )
-    @JoinColumn(
-        name = "local_id",
-        referencedColumnName = "localId"
+    @JoinTable(
+        name = "local_customer_map",
+        joinColumns = @JoinColumn(
+                name="local_id",
+                referencedColumnName = "localId"
+        ),
+        inverseJoinColumns = @JoinColumn(
+                name = "costumer_id",
+                referencedColumnName = "costumerId"
+        )
+
     )
-    private List<NewOrders> newOrders;
+    private List<Customer> customersList;
+
+    // @OneToMany(
+    //     cascade = CascadeType.ALL,
+    //     fetch = FetchType.EAGER
+    // )
+    // @JoinColumn(
+    //     name = "local_id",
+    //     referencedColumnName = "localId"
+    // )
+    // private List<NewOrders> newOrders;
 }
