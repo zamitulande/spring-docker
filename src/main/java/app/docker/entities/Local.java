@@ -57,7 +57,8 @@ public class Local {
     private Manager manager;
 
     @ManyToMany(
-        cascade = CascadeType.ALL
+        cascade = CascadeType.ALL,
+        fetch = FetchType.EAGER
     )
     @JoinTable(
         name = "local_customer_map",

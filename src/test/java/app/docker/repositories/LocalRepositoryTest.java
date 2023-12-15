@@ -11,6 +11,7 @@ import app.docker.entities.Customer;
 import app.docker.entities.Local;
 import app.docker.entities.Manager;
 //import app.docker.entities.NewOrders;
+//import app.docker.entities.NewOrders;
 
 @SpringBootTest
 public class LocalRepositoryTest {
@@ -112,4 +113,6 @@ public class LocalRepositoryTest {
 
             localRepository.save(local);
     }
+
+
 }
